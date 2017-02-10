@@ -39,7 +39,18 @@
 
     //commit seppuku!
     function seppuku() {
-        init = add = rebuild = pause = stop = kill = noop;
+        var isChromium = window.chrome,
+            winNav = window.navigator,
+            vendorName = winNav.vendor,
+            isIEedge = winNav.userAgent.indexOf("Edge") > -1,
+            isIOSChrome = winNav.userAgent.match("CriOS");
+
+        if (isIOSChrome || isChromium !== null && isChromium !== undefined && isIEedge == false) {
+            // is Chromium render engine - don't use native support till it's bug-free
+        } else {
+            // is something else
+            init = add = rebuild = pause = stop = kill = noop;
+        }
     }
 
     function mergeObjects(targetObj, sourceObject) {
@@ -67,7 +78,7 @@
             rebuild();
             return;
         }
-        
+
         if (win.pageYOffset != scroll.top) {
             updateScrollPos();
             recalcAllPos();
@@ -267,7 +278,7 @@
             },
             nodeOffset = getElementOffset(node),
             parentOffset = getElementOffset(parentNode),
-            
+
             parent = {
                 node: parentNode,
                 css: {
@@ -383,11 +394,11 @@
         if (!initialized) return;
 
         deinitAll();
-        
+
         for (var i = watchArray.length - 1; i >= 0; i--) {
             watchArray[i] = getElementParams(watchArray[i].node);
         }
-        
+
         initAll();
     }
 
@@ -405,7 +416,7 @@
 
     function stop() {
         pause();
-        deinitAll(); 
+        deinitAll();
     }
 
     function kill() {
