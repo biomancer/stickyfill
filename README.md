@@ -4,6 +4,8 @@ The most accurate sticky polyfill out in the wild.
 
 Check out [the demo](http://wd.dizaina.net/en/scripts/stickyfill/) and [use cases test page](http://wilddeer.github.io/stickyfill/test/).
 
+This fork is wrapped as webmodule, following https://github.com/webmodules/stickyfill 
+
 ###What it does
 
 - supports top-positioned stickies,

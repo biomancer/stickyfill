@@ -1,4 +1,20 @@
-(function(doc, win) {
+/*!
+ * Stickyfill -- `position: sticky` polyfill
+ * v. 1.1.1 | https://github.com/wilddeer/stickyfill
+ * Copyright Oleg Korsunsky | http://wd.dizaina.net/
+ *
+ * MIT License
+ */
+
+module.exports = (function(doc, win) {
+    if (!doc) {
+        doc = document;
+    }
+
+    if (!win) {
+        win = window;
+    }
+    
     var watchArray = [],
         scroll,
         initialized = false,
@@ -457,7 +473,7 @@
     }
 
     //expose Stickyfill
-    win.Stickyfill = {
+    return {
         stickies: watchArray,
         add: add,
         remove: remove,
@@ -467,18 +483,4 @@
         stop: stop,
         kill: kill
     };
-})(document, window);
-
-
-//if jQuery is available -- create a plugin
-if (window.jQuery) {
-    (function($) {
-        $.fn.Stickyfill = function(options) {
-            this.each(function() {
-                Stickyfill.add(this);
-            });
-
-            return this;
-        };
-    })(window.jQuery);
-}
+})
