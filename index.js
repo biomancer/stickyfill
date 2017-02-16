@@ -58,10 +58,10 @@ module.exports = (function(doc, win) {
         var isChromium = window.chrome,
             winNav = window.navigator,
             vendorName = winNav.vendor,
-            isIEedge = winNav.userAgent.indexOf("Edge") > -1,
-            isIOSChrome = winNav.userAgent.match("CriOS");
+            isIEedge = winNav.userAgent.indexOf("Edge") > -1
+            // isIOSChrome = winNav.userAgent.match("CriOS");
 
-        if (isIOSChrome || isChromium !== null && isChromium !== undefined && isIEedge == false) {
+        if (isChromium !== null && isChromium !== undefined && isIEedge == false) {
             // is Chromium render engine - don't use native support till it's bug-free
         } else {
             // is something else
