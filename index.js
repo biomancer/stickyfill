@@ -61,8 +61,14 @@ module.exports = (function(doc, win) {
             isIEedge = winNav.userAgent.indexOf("Edge") > -1
             // isIOSChrome = winNav.userAgent.match("CriOS");
 
-        if (isChromium !== null && isChromium !== undefined && isIEedge == false) {
+        // simplified version of regexp is from
+        // https://stackoverflow.com/questions/5916900/how-can-you-detect-the-version-of-a-browser
+        var chromeUserAgent = navigator.userAgent.match(/(chrome(?=\/))\/?\s*(\d+)/i);
+        var chromeVersion = chromeUserAgent ? parseInt(chromeUserAgent[2], 10) : null
+
+        if (isChromium !== null && isChromium !== undefined && chromeVersion < 60  && isIEedge == false) {
             // is Chromium render engine - don't use native support till it's bug-free
+            // use native support from version 60
         } else {
             // is something else
             init = add = rebuild = pause = stop = kill = noop;
