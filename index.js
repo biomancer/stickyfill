@@ -66,7 +66,7 @@ module.exports = (function(doc, win) {
         var chromeUserAgent = navigator.userAgent.match(/(chrome(?=\/))\/?\s*(\d+)/i);
         var chromeVersion = chromeUserAgent ? parseInt(chromeUserAgent[2], 10) : null
 
-        if (isChromium !== null && isChromium !== undefined && chromeVersion < 60  && isIEedge == false) {
+        if (isChromium !== null && isChromium !== undefined && (chromeVersion && chromeVersion < 60) && isIEedge == false) {
             // is Chromium render engine - don't use native support till it's bug-free
             // use native support from version 60
         } else {
